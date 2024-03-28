@@ -23,6 +23,7 @@ export default function RootLayout({
           data-key="aad52487-10f3-44bb-addc-281c3986a876"
           data-base-url="https://jsd-widget.atlassian.com"
           src="https://jsd-widget.atlassian.com/assets/embed.js"
+          async
         ></script>
       </head>
       <body className={inter.className}>

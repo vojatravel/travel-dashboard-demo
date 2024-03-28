@@ -1,23 +1,17 @@
-// a simple floating cta button tsx code
+import styles from "./floating-cta.module.scss";
+import Link from "next/link";
 
-import React from "react";
-
-import styles from "./floating-cta.module.css";
-
-export default function FloatingCta() {
+export const FloatingCta = () => {
   return (
-    <a
-      href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles.cta}
-    >
-      By{" "}
-      <img
-        src="/vercel.svg"
-        alt="Vercel Logo"
-        className={styles.vercelLogo}
-      />
-    </a>
+    <div className={styles.floatingCta}>
+      <div className={styles.container}>
+        <div className={styles.destination}>Travel Destination</div>
+        <div className={styles.days}>Number of Days</div>
+        <div className={styles.price}>Total Price</div>
+        <button className="btn btn btn-outline-primary" role="button">
+          <Link href={"/dashboard"}>Click Me</Link>
+        </button>
+      </div>
+    </div>
   );
-}
+};

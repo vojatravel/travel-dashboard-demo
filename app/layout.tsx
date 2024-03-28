@@ -17,6 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          data-jsd-embedded
+          data-key="aad52487-10f3-44bb-addc-281c3986a876"
+          data-base-url="https://jsd-widget.atlassian.com"
+          src="https://jsd-widget.atlassian.com/assets/embed.js"
+        ></script>
+      </head>
       <body className={inter.className}>
         {children}
         <FloatingCta />

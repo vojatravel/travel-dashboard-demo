@@ -8,9 +8,8 @@ export const FloatingCta = () => {
         <div className={styles.destination}>Travel Destination</div>
         <div className={styles.days}>Number of Days</div>
         <div className={styles.price}>Total Price</div>
-        <button className="btn btn btn-outline-primary" role="button">
-          <Link href={"/dashboard"}>Click Me</Link>
-        </button>
+        <Link className="btn btn btn-outline-primary btn-lg" role="button" href={"/dashboard"}>Primary
+        </Link>
       </div>
     </div>
   );

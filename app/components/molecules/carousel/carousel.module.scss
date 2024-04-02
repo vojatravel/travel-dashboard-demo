@@ -1,0 +1,20 @@
+.swiperContainer {
+  overflow: hidden;
+
+  .swiperButtonNext {
+    right: 10%;
+  }
+
+  .swiperButtonPrev {
+    left: 10%;
+  }
+
+  .swiperButtonPrev::after,
+  .swiperButtonNext::after {
+    font-family: none;
+    content: none;
+  }
+
+  @media (max-width: 768px) {
+  }
+}

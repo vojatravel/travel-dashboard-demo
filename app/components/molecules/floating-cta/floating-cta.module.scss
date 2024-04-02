@@ -20,8 +20,20 @@
     .destination,
     .days,
     .price {
-      flex: 1; /* Distribute available space evenly among the items */
+      flex: 0.3; /* Distribute available space evenly among the items */
       padding: 5px;
+    }
+
+    .item {
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden; // Ensure the pseudo-element respects the border-radius
+      transition: all 0.3s ease-in-out;
+
+
+      &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
     }
 
     button {

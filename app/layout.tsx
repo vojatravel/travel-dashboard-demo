@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import { FloatingCta } from "@molecules/floating-cta";
+import { Form } from "@molecules/form";
 
 const inter = Inter({ subsets: ["latin"] });
 

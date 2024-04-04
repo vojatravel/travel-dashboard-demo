@@ -6,10 +6,18 @@ import { Navigation, Pagination, Parallax } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./carousel.module.scss";
+interface DocumentData {
+  _id: string;
+  description: string;
+  title: string;
+  url: string;
+}
 
 export const Carousel = () => {
+  const [collectionData, setCollectionData] = useState<DocumentData[]>([]);
+  
   useEffect(() => {
     const swiper = new Swiper(".swiper-container", {
       modules: [Navigation, Pagination, Parallax],
@@ -22,11 +30,32 @@ export const Carousel = () => {
         clickable: true,
       },
       speed: 400,
-      parallax: true,
-      loop: true,
+      parallax: false,
+      loop: false,
       spaceBetween: 20,
     });
   }, []);
+
+  useEffect(() => {
+    const fetchCollectionData = async () => {
+      try {
+        const response = await fetch(`/api/fetchDocument?collectionName=locations`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        const formattedData: DocumentData[] = data.map((doc: DocumentData) => ({
+          id: doc._id, // Assuming MongoDB document structure
+          ...doc
+        }));
+        setCollectionData(formattedData);
+      } catch (error) {
+        console.error("Failed to fetch collection data:", error);
+      }
+    };
+  
+    fetchCollectionData();
+  }, []);
+  
+
   return (
     <div className={`${styles.swiperContainer} swiper-container`}>
       <div
@@ -39,54 +68,24 @@ export const Carousel = () => {
         data-swiper-parallax="-23%"
       ></div>
       <div className="swiper-wrapper">
-        <div className="swiper-slide">
-          <div className="card text-center">
-            <div className="card-header">Featured</div>
-            <div className="card-body">
-              <h5 className="card-title">Special title treatment</h5>
-              <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
+        {collectionData.map((doc) => (
+          <div key={doc._id} className="swiper-slide">
+            <div className="card text-center">
+              <div className="card-header">{doc.title}</div>
+              <div className="card-body">
+                <h5 className="card-title">{doc.title}</h5>
+                <p className="card-text">{doc.description}</p>
+                <a
+                  href={doc.url}
+                  className="btn btn-primary"
+                >
+                  see more...
+                </a>
+              </div>
+              <div className="card-footer text-muted">{doc.title}</div>
             </div>
-            <div className="card-footer text-muted">2 days ago</div>
           </div>
-        </div>
-        <div className="swiper-slide">
-          <div className="card text-center">
-            <div className="card-header">Featured</div>
-            <div className="card-body">
-              <h5 className="card-title">Special title treatment</h5>
-              <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-            <div className="card-footer text-muted">2 days ago</div>
-          </div>
-        </div>
-        <div className="swiper-slide">
-          <div className="card text-center">
-            <div className="card-header">Featured</div>
-            <div className="card-body">
-              <h5 className="card-title">Special title treatment</h5>
-              <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
-            </div>
-            <div className="card-footer text-muted">2 days ago</div>
-          </div>
-        </div>
+        ))}
       </div>
       <div className={`${styles.swiperPagination} swiper-pagination`}></div>
       <div className={`${styles.swiperButtonPrev} swiper-button-prev`}>

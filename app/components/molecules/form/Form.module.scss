@@ -1,0 +1,25 @@
+.customForm {
+  // Add custom form styles here
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60%;
+
+  .customLabel {
+    // Custom label styles
+    font-weight: bold;
+    input {
+      margin-right: 5px;
+    }
+  }
+}
+
+.customInput {
+  // Custom input styles
+  border-radius: 4px;
+
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}

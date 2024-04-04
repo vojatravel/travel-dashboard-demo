@@ -2,15 +2,13 @@
 
 import styles from "./floating-cta.module.scss";
 import Link from "next/link";
-import { createCollection } from "../../../../lib/firebase/storage";
+import { createCollection, readCollection } from "@lib/firebase/storage";
 
 export const FloatingCta = () => {
-  const collection = () => {
-    createCollection("locations", "Madeira", {
-      title: "Madeira Island",
-      description: "The best island in the world",
-    });
-  };
+
+// locations as a dynamic const to be used in the return statement
+  
+
   return (
     <div className={styles.floatingCta}>
       <div className={styles.container}>
@@ -26,7 +24,6 @@ export const FloatingCta = () => {
         >
           Primary
         </Link>
-        <button onClick={collection}></button>
       </div>
     </div>
   );

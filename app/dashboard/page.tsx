@@ -1,5 +1,8 @@
+"use client"
+
 import { Carousel } from "@molecules/carousel";
 import styles from './dashboard.module.scss';
+
 
 const Dashboard = () => {
   return (

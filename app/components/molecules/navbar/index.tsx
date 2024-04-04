@@ -1,7 +1,8 @@
 import Link from "next/link";
+import styles from "./navBar.module.scss";
 
 const Navbar = () => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <nav className={`navbar navbar-expand-lg navbar-light bg-light ${styles.navBar}`}>
     <div className="container-fluid">
       <Link href="/" passHref className="navbar-brand">
         Navbar

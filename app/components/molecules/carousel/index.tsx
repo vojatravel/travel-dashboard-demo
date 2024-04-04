@@ -31,7 +31,7 @@ export const Carousel = () => {
       },
       speed: 400,
       parallax: false,
-      loop: true,
+      loop: false,
       spaceBetween: 20,
     });
   }, []);

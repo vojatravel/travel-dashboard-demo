@@ -1,0 +1,61 @@
+// createData.module.scss
+
+.createData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f9f9f9; // Light grey background
+    // min-height: 100vh; // Full viewport height
+    width: 80%;
+  }
+  
+  .title {
+    color: #333; // Dark grey color for text
+    margin-bottom: 1rem;
+  }
+  
+  .introText {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666; // Lighter grey for the introductory text
+    max-width: 600px; // Ensures the text doesn't stretch too wide
+  }
+  
+  // Assuming Form and Modal are child components that might need some base styling
+  // If they have their own SCSS modules, these styles could instead adjust margins or padding for positioning
+  
+  // Basic styling for the form, assuming it might need some outer spacing
+  .form {
+    width: 100%;
+    max-width: 500px; // Max width to prevent the form from being too wide
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); // A subtle shadow for depth
+    background: #fff; // White background for the form
+    border-radius: 8px; // Rounded corners
+    margin-bottom: 2rem; // Space below the form
+  }
+  
+  // Modal specific styling could be added here, if not already styled within the Modal component itself
+  .modal {
+    // Example: basic overlay styling
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5); // Semi-transparent background
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px; // Match the form's border-radius
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); // Slightly more pronounced shadow for the modal
+    width: 90%;
+    max-width: 400px; // Restricts the modal's maximum width
+  }
+  

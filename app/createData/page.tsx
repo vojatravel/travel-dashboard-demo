@@ -1,5 +1,7 @@
 import { Form } from "@molecules/form";
 import styles from "./createData.module.scss";
+import { Modal } from "@atoms/modal";
+import CreateDatacomp from "../components/molecules/createDataComp";
 
 const CreateData = () => {
   return (
@@ -8,7 +10,7 @@ const CreateData = () => {
       <p className={styles.introText}>
         Please fill in the form below to add a new document to the collection.
       </p>
-      <Form />
+      <CreateDatacomp />
     </div>
   );
 };

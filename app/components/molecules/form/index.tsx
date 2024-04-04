@@ -2,7 +2,7 @@
 "use client";
 
 import styles from "./Form.module.scss"; // Import your SCSS module
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 interface DocumentData {
   id: string;
@@ -12,7 +12,12 @@ interface DocumentData {
   url: string;
 }
 
-export const Form = () => {
+interface FormProps {
+  onSuccess: (message: SetStateAction<string>) => void;
+  onFailure: (message: SetStateAction<string>) => void;
+}
+
+export const Form = ({ onSuccess, onFailure }: FormProps) => {
   const [newData, setNewData] = useState<DocumentData>({
     id: "",
     description: "",
@@ -22,7 +27,7 @@ export const Form = () => {
   });
   const [createCollection, setCreateCollection] = useState<boolean>(false);
 
-  const onSubmit = async (e: { preventDefault: () => void }) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Dynamically set the base URL
     const baseUrl =
@@ -43,8 +48,18 @@ export const Form = () => {
       });
       if (!response.ok) throw new Error("Network response was not ok");
       console.log("Document added successfully");
+      onSuccess("Document added successfully!");
+      // Empty the input fields after submission
+      setNewData({
+        id: "",
+        description: "",
+        title: "",
+        collectionName: "locations",
+        url: "",
+      });
     } catch (error) {
       console.error("Failed to add document", error);
+      onFailure("Failed to add document. Please try again.");
     }
   };
 

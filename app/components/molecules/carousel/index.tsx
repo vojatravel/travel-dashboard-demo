@@ -38,11 +38,15 @@ export const Carousel = () => {
 
   useEffect(() => {
     const fetchCollectionData = async () => {
+      // Use Netlify Functions base URL in production, otherwise use local server
+      const baseUrl = window.location.hostname === 'localhost' ? 'api/' : '/.netlify/functions';
+      const apiEndpoint = `${baseUrl}/fetchDocument?collectionName=locations`;
+  
       try {
-        const response = await fetch(`/api/fetchDocument?collectionName=locations`);
+        const response = await fetch(apiEndpoint);
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
-        const formattedData: DocumentData[] = data.map((doc: DocumentData) => ({
+        const formattedData = data.map((doc: { _id: any; }) => ({
           id: doc._id, // Assuming MongoDB document structure
           ...doc
         }));

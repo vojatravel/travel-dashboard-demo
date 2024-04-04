@@ -22,20 +22,22 @@ export const Form = () => {
   });
   const [createCollection, setCreateCollection] = useState<boolean>(false);
 
-  const onSubmit = async (e: { preventDefault: () => void }) => {
+  const onSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    // Dynamically set the base URL
+    const baseUrl = window.location.hostname === 'localhost' ? '/api' : '/.netlify/functions';
+    const apiEndpoint = `${baseUrl}/addDocument`;
+  
     const bodyContent = {
       collectionName: newData.collectionName,
       createCollection,
       document: newData,
     };
-
+  
     try {
-      const response = await fetch('/api/addDocument', {
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bodyContent),
       });
       if (!response.ok) throw new Error('Network response was not ok');
@@ -44,6 +46,7 @@ export const Form = () => {
       console.error('Failed to add document', error);
     }
   };
+  
 
   return (
     <form onSubmit={onSubmit} className={`form ${styles.customForm}`}>

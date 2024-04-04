@@ -1,7 +1,7 @@
 "use client";
 
 import Swiper from "swiper";
-import { Navigation, Pagination, Parallax } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -17,10 +17,11 @@ interface DocumentData {
 
 export const Carousel = () => {
   const [collectionData, setCollectionData] = useState<DocumentData[]>([]);
-  
+
   useEffect(() => {
+    
     const swiper = new Swiper(".swiper-container", {
-      modules: [Navigation, Pagination, Parallax],
+      modules: [Navigation, Pagination],
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -30,35 +31,37 @@ export const Carousel = () => {
         clickable: true,
       },
       speed: 400,
-      parallax: false,
       loop: false,
       spaceBetween: 20,
     });
+    return () => swiper.destroy(true, true); // Cleanup Swiper instance
   }, []);
 
   useEffect(() => {
     const fetchCollectionData = async () => {
       // Use Netlify Functions base URL in production, otherwise use local server
-      const baseUrl = window.location.hostname === 'localhost' ? 'api/' : '/.netlify/functions';
+      const baseUrl =
+        window.location.hostname === "localhost"
+          ? "api/"
+          : "/.netlify/functions";
       const apiEndpoint = `${baseUrl}/fetchDocument?collectionName=locations`;
-  
+
       try {
         const response = await fetch(apiEndpoint);
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
-        const formattedData = data.map((doc: { _id: any; }) => ({
+        const formattedData = data.map((doc: { _id: any }) => ({
           id: doc._id, // Assuming MongoDB document structure
-          ...doc
+          ...doc,
         }));
         setCollectionData(formattedData);
       } catch (error) {
         console.error("Failed to fetch collection data:", error);
       }
     };
-  
+
     fetchCollectionData();
   }, []);
-  
 
   return (
     <div className={`${styles.swiperContainer} swiper-container`}>
@@ -79,10 +82,7 @@ export const Carousel = () => {
               <div className="card-body">
                 <h5 className="card-title">{doc.title}</h5>
                 <p className="card-text">{doc.description}</p>
-                <a
-                  href={doc.url}
-                  className="btn btn-primary"
-                >
+                <a href={doc.url} className="btn btn-primary">
                   see more...
                 </a>
               </div>

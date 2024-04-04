@@ -17,7 +17,7 @@ export const Form = () => {
     id: "",
     description: "",
     title: "",
-    collectionName: "",
+    collectionName: "locations",
     url: "",
   });
   const [createCollection, setCreateCollection] = useState<boolean>(false);
@@ -55,7 +55,7 @@ export const Form = () => {
           type="text"
           className={`form-control ${styles.customInput}`}
           placeholder="Collection Name"
-          value={newData.collectionName || "locations"}
+          value={newData.collectionName || ""}
           onChange={(e) =>
             setNewData({ ...newData, collectionName: e.target.value })
           }

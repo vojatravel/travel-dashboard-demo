@@ -1,14 +1,12 @@
 // pages/api/addDocument.js
 import { MongoClient } from 'mongodb';
 
-// This is a simple example. In production, consider securing your database connection
-// and managing connections efficiently
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
 async function connectToDatabase() {
     await client.connect();
-    return client.db("training"); // Replace with your actual database name
+    return client.db("training");
 }
 
 export default async function handler(req, res) {

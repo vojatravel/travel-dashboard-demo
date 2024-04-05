@@ -1,15 +1,10 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 const Home = () => {
   return (
     <div className={styles.container}>
-      <Image
-        src="/image.png"
-        alt="Picture of the author"
-        width={500}
-        height={500}
-      />
+      Home page
     </div>
   );
 }

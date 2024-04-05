@@ -1,6 +1,4 @@
-import { Form } from "@molecules/form";
 import styles from "./createData.module.scss";
-import { Modal } from "@atoms/modal";
 import CreateDatacomp from "../components/molecules/createDataComp";
 
 const CreateData = () => {

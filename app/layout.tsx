@@ -4,6 +4,8 @@ import "./globals.scss";
 import { FloatingCta } from "@molecules/floating-cta";
 import Navbar from "@molecules/navbar";
 
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
